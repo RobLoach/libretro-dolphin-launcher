@@ -5,6 +5,7 @@
 #include <string.h>
 #include <math.h>
 #include <libretro.h>
+#include <string/stdstring.h>
 
 static uint32_t *frame_buf;
 static struct retro_log_callback logging;
@@ -79,7 +80,7 @@ void retro_set_environment(retro_environment_t cb)
 {
    environ_cb = cb;
 
-   bool no_content = false;
+   bool no_content = true;
    cb(RETRO_ENVIRONMENT_SET_SUPPORT_NO_GAME, &no_content);
 
    if (cb(RETRO_ENVIRONMENT_GET_LOG_INTERFACE, &logging))
@@ -126,12 +127,15 @@ void retro_run(void)
 
 bool retro_load_game(const struct retro_game_info *info)
 {
-   int status = -1;
    char command[512];
-   sprintf(command, "dolphin-emu --batch --exec=\"%s\"", info->path);
-   status = system(command);
+   if (string_is_empty(&info->path)) {
+      strcpy(command, "dolphin-emu");
+   }
+   else {
+      sprintf(command, "dolphin-emu --batch --exec=\"%s\"", info->path);
+   }
 
-   return status != -1;
+   return system(command) != -1;
 }
 
 void retro_unload_game(void)
