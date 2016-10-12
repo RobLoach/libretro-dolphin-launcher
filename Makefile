@@ -111,7 +111,8 @@ else
    CFLAGS += -O3
 endif
 
-OBJECTS := libretro-dolphin-launcher.o
+OBJECTS := libretro-dolphin-launcher.o \
+	vendor/libretro-common/string/stdstring.o
 CFLAGS += -Ivendor/libretro-common/include -Wall -pedantic $(fpic)
 
 ifneq (,$(findstring qnx,$(platform)))
