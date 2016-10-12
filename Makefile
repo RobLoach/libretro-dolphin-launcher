@@ -122,8 +122,7 @@ endif
 
 CFLAGS += -Ivendor/libretro-common/include
 
-
-all: $(TARGET)
+all: submodules $(TARGET)
 
 $(TARGET): $(OBJECTS)
 ifeq ($(STATIC_LINKING), 1)
@@ -135,8 +134,12 @@ endif
 %.o: %.c
 	$(CC) $(CFLAGS) $(fpic) -c -o $@ $<
 
+submodules:
+	@git submodule update --init --recursive
+
 clean:
 	rm -f $(OBJECTS) $(TARGET)
+	git submodule deinit .
 
 .PHONY: clean
 
