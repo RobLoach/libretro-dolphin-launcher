@@ -122,8 +122,10 @@ endif
 
 CFLAGS += -Ivendor/libretro-common/include
 
+vendor/libretro-common/include/libretro.h:
+	git submodule --quiet update --init
 
-all: $(TARGET)
+all: vendor/libretro-common/include/libretro.h $(TARGET)
 
 $(TARGET): $(OBJECTS)
 ifeq ($(STATIC_LINKING), 1)
