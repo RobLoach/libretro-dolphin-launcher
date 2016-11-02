@@ -5,7 +5,6 @@
 #include <string.h>
 #include <math.h>
 #include <libretro.h>
-#include <string/stdstring.h>
 
 static uint32_t *frame_buf;
 static struct retro_log_callback logging;
@@ -133,7 +132,7 @@ bool retro_load_game(const struct retro_game_info *info)
    // Construct the command to run Dolphin.
    char command[512];
    const char *str = info->path;
-   if (string_is_empty(str)) {
+   if (str[0]=='\0') {
       strcpy(command, "dolphin-emu");
    }
    else {
