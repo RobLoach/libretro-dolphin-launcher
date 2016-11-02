@@ -111,9 +111,8 @@ else
    CFLAGS += -O3
 endif
 
-OBJECTS := libretro-dolphin-launcher.o \
-	vendor/libretro-common/string/stdstring.o
-CFLAGS += -Ivendor/libretro-common/include -Wall -pedantic $(fpic)
+OBJECTS := libretro-dolphin-launcher.o
+CFLAGS += -Wall -pedantic $(fpic)
 
 ifneq (,$(findstring qnx,$(platform)))
 CFLAGS += -Wc,-std=c99
@@ -121,9 +120,9 @@ else
 CFLAGS += -std=gnu99
 endif
 
-CFLAGS += -Ivendor/libretro-common/include
+CFLAGS += -I.
 
-all: submodules $(TARGET)
+all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
 ifeq ($(STATIC_LINKING), 1)
@@ -135,12 +134,8 @@ endif
 %.o: %.c
 	$(CC) $(CFLAGS) $(fpic) -c -o $@ $<
 
-submodules:
-	@git submodule update --init --recursive
-
 clean:
 	rm -f $(OBJECTS) $(TARGET)
-	git submodule deinit .
 
 .PHONY: clean
 
