@@ -132,7 +132,7 @@ bool retro_load_game(const struct retro_game_info *info)
    // Construct the command to run Dolphin.
    char command[512];
    const char *str = info->path;
-   if (str[0]=='\0') {
+   if (str==NULL || str[0]=='\0') {
       strcpy(command, "dolphin-emu");
    }
    else {
