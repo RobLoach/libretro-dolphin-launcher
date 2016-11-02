@@ -120,26 +120,33 @@ void retro_reset(void)
 
 void retro_run(void)
 {
+   // Clear the display.
    unsigned stride = 320;
-
    video_cb(frame_buf, 320, 240, stride << 2);
+
+   // Shutdown the environment now that Dolphin has loaded and quit.
+   environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, NULL);
 }
 
 bool retro_load_game(const struct retro_game_info *info)
 {
+   // Construct the command to run Dolphin.
    char command[512];
-   if (string_is_empty(&info->path)) {
+   const char *str = info->path;
+   if (string_is_empty(str)) {
       strcpy(command, "dolphin-emu");
    }
    else {
-      sprintf(command, "dolphin-emu --batch --exec=\"%s\"", info->path);
+      sprintf(command, "dolphin-emu --batch --exec=\"%s\"", str);
    }
 
+   // Run Dolphin.
    return system(command) != -1;
 }
 
 void retro_unload_game(void)
 {
+   // Nothing needs to happen when the game unloads.
 }
 
 unsigned retro_get_region(void)
@@ -149,7 +156,7 @@ unsigned retro_get_region(void)
 
 bool retro_load_game_special(unsigned game_type, const struct retro_game_info *info, size_t num_info)
 {
-   return retro_load_game(NULL);
+   return retro_load_game(info);
 }
 
 size_t retro_serialize_size(void)
@@ -180,7 +187,9 @@ size_t retro_get_memory_size(unsigned id)
 }
 
 void retro_cheat_reset(void)
-{}
+{
+   // Nothing.
+}
 
 void retro_cheat_set(unsigned index, bool enabled, const char *code)
 {
