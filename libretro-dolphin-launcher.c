@@ -44,7 +44,7 @@ void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
    info->library_name     = "Dolphin Launcher";
-   info->library_version  = "1.0.0";
+   info->library_version  = "1.0.2";
    info->need_fullpath    = true;
    info->valid_extensions = "elf|dol|gcm|iso|wbfs|ciso|gcz|wad";
 }
@@ -115,8 +115,14 @@ void retro_set_video_refresh(retro_video_refresh_t cb)
 
 void retro_reset(void)
 {
+   // Nothing needs to happen when the game is reset.
 }
 
+/**
+ * libretro callback; Called every game tick.
+ *
+ * Once the core has run, we will attempt to exit, since Dolphin is done.
+ */
 void retro_run(void)
 {
    // Clear the display.
@@ -127,8 +133,13 @@ void retro_run(void)
    environ_cb(RETRO_ENVIRONMENT_SHUTDOWN, NULL);
 }
 
+/**
+ * libretro callback; Called when a game is to be loaded.
+ */
 bool retro_load_game(const struct retro_game_info *info)
 {
+   // TODO: Find where "dolphin-emu" lives.
+
    // Construct the command to run Dolphin.
    char command[512];
    const char *str = info->path;
