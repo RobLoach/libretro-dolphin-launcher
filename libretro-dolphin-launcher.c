@@ -44,7 +44,7 @@ void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
    info->library_name     = "Dolphin Launcher";
-   info->library_version  = "1.0.2";
+   info->library_version  = "1.0.3";
    info->need_fullpath    = true;
    info->valid_extensions = "elf|dol|gcm|iso|wbfs|ciso|gcz|wad";
 }
