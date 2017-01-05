@@ -31,7 +31,7 @@ Launch [Dolphin](https://dolphin-emu.org) from [RetroArch](http://www.libretro.c
 
 3. Alternatively, you can run games through the command line
   ``` bash
-  retroarch -L /usr/lib/libretro/dolphin_launcher_libretro.so Mario.gcm
+  retroarch -L dolphin_launcher_libretro.so Mario.gcm
   ```
 
 ## Credits
