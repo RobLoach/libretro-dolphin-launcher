@@ -140,14 +140,11 @@ bool retro_load_game(const struct retro_game_info *info)
 {
    // TODO: Find where "dolphin-emu" lives.
    // Construct the command to run Dolphin.
-   char command[512];
+   char command[512] = "dolphin-emu";
 
    // Check if there is content to load.
-   if (info == NULL || info->path == NULL || info->path[0] == '\0') {
-      strcpy(command, "dolphin-emu");
-   }
-   else {
-      sprintf(command, "dolphin-emu --batch --exec=\"%s\"", info->path);
+   if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
    }
 
    // Run Dolphin.
