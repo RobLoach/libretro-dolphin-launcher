@@ -1,6 +1,6 @@
 # libretro-dolphin-launcher
 
-Launch [Dolphin](https://dolphin-emu.org) from [RetroArch](http://www.libretro.com/).
+Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org), directly from [RetroArch](http://www.libretro.com/).
 
 ![Dolphin Launcher Screenshot](screenshot.jpg)
 
@@ -18,14 +18,14 @@ Launch [Dolphin](https://dolphin-emu.org) from [RetroArch](http://www.libretro.c
   cp dolphin_launcher_libretro.so /usr/lib/libretro/
   ```
 
-3. Make sure [Dolphin](http://dolphin-emu.org) is installed
+3. Make sure [Dolphin](http://dolphin-emu.org) [is installed](https://dolphin-emu.org/download/?ref=btn)
   ``` bash
-  apt-get install dolphin-emu
+  dolphin-emu
   ```
 
 ## Usage
 
-1. Scan Nintendo GameCube and Wii in RetroArch
+1. Scan Nintendo GameCube and Wii games in RetroArch
 
 2. Launch the games directly from the RetroArch menu
 
