@@ -34,7 +34,7 @@ Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org
   retroarch -L dolphin_launcher_libretro.so Mario.gcm
   ```
 
-## Credits
+## Contributors
 
 - [Rob Loach](http://github.com/robloach)
 - [Alcaro](https://github.com/Alcaro)
