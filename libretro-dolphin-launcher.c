@@ -139,15 +139,30 @@ void retro_run(void)
 bool retro_load_game(const struct retro_game_info *info)
 {
    // TODO: Find where "dolphin-emu" lives.
-   // Construct the command to run Dolphin.
-   char command[512] = "dolphin-emu";
+
+   // Launch without the gui if available (Dolphin 5).
+   char command[512] = "dolphin-emu-nogui";
 
    // Check if there is content to load.
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      sprintf(command, "%s --exec=\"%s\"", command, info->path);
+   }
+
+   // Check if running Dolphin works.
+   if (system(command)) {
+      printf("Returned true on dolphin-emu-nogui");
+      return true;
+   }
+   //log_cb(RETRO_LOG_INFO, "fasdfadsfda");
+   printf("Fallback to dolphin-emu");
+
+   // Dolphin 4 does not have dolphin-emu.
+   strcpy(command, "dolphin-emu");
+   if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      // Execute with --batch.
       sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
    }
 
-   // Run Dolphin.
    return system(command) != -1;
 }
 
