@@ -44,7 +44,7 @@ void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
    info->library_name     = "Dolphin Launcher";
-   info->library_version  = "1.0.4";
+   info->library_version  = "1.1.0";
    info->need_fullpath    = true;
    info->valid_extensions = "elf|dol|gcm|iso|wbfs|ciso|gcz|wad";
 }
@@ -138,16 +138,28 @@ void retro_run(void)
  */
 bool retro_load_game(const struct retro_game_info *info)
 {
-   // TODO: Find where "dolphin-emu" lives.
-   // Construct the command to run Dolphin.
-   char command[512] = "dolphin-emu";
+   // Launch without the gui if available (Dolphin 5).
+   char command[512] = "dolphin-emu-nogui";
 
    // Check if there is content to load.
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      sprintf(command, "%s -e \"%s\"", command, info->path);
+   }
+
+   // Check if running Dolphin works.
+   if (system(command) == 0) {
+      printf("Completed dolphin-emu-nogui");
+      return true;
+   }
+   printf("dolphin-emu-nogui not found, trying dolphin-emu");
+
+   // Dolphin 4 does not have dolphin-emu-nogui.
+   strcpy(command, "dolphin-emu");
+   if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      // Execute with --batch.
       sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
    }
 
-   // Run Dolphin.
    return system(command) != -1;
 }
 
