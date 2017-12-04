@@ -160,7 +160,24 @@ bool retro_load_game(const struct retro_game_info *info)
       sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
    }
 
-   return system(command) != -1;
+   if (system(command) == 0) {
+      printf("Completed dolphin-emu");
+      return true;
+   }
+
+   printf("dolphin-emu failed. Trying Flatpak.");
+   strcpy(command, "flatpak run org.DolphinEmu.dolphin-emu");
+   if (info != NULL && info->path != NULL && info->path[0] != '\0') {
+      // Execute with --batch.
+      sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
+   }
+   if (system(command) == 0) {
+      printf("Completed dolphin on Flatpak");
+      return true;
+   }
+
+   printf("Failed running Dolphin. Install it and try again.");
+   return false;
 }
 
 void retro_unload_game(void)
