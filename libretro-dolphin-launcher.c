@@ -148,10 +148,10 @@ bool retro_load_game(const struct retro_game_info *info)
 
    // Check if running Dolphin works.
    if (system(command) == 0) {
-      printf("Completed dolphin-emu-nogui");
+      printf("libretro-dolphin-launcher: Completed dolphin-emu-nogui\n");
       return true;
    }
-   printf("dolphin-emu-nogui not found, trying dolphin-emu");
+   printf("libretro-dolphin-launcher: dolphin-emu-nogui not found. Attempting dolphin-emu...\n");
 
    // Dolphin 4 does not have dolphin-emu-nogui.
    strcpy(command, "dolphin-emu");
@@ -161,22 +161,23 @@ bool retro_load_game(const struct retro_game_info *info)
    }
 
    if (system(command) == 0) {
-      printf("Completed dolphin-emu");
+      printf("libretro-dolphin-launcher: Finished dolphin-emu\n");
       return true;
    }
 
-   printf("dolphin-emu failed. Trying Flatpak.");
+   // Flatpak
+   printf("libretro-dolphin-launcher: dolphin-emu not found. Attempting Flatpak...\n");
    strcpy(command, "flatpak run org.DolphinEmu.dolphin-emu");
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
       // Execute with --batch.
       sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
    }
    if (system(command) == 0) {
-      printf("Completed dolphin on Flatpak");
+      printf("libretro-dolphin-launcher: Finished running Dolphin through Flatpak.\n");
       return true;
    }
 
-   printf("Failed running Dolphin. Install it and try again.");
+   printf("libretro-dolphin-launcher: Failed running Dolphin. Install it and try again.\n");
    return false;
 }
 
