@@ -1,6 +1,8 @@
 # libretro-pcsx2-launcher
 
-Launch Sony PlayStation 2 games through [PCSX2](https://pcsx2.net/), directly from [RetroArch](http://www.libretro.com/). Based on [libretro-dolphin-launcher](https://github.com/RobLoach/libretro-dolphin-launcher) from Rob Loach.
+Based on [libretro-dolphin-launcher](https://github.com/RobLoach/libretro-dolphin-launcher).
+
+Launch Sony PlayStation 2 games through [PCSX2](https://pcsx2.net/), directly from [RetroArch](http://www.libretro.com/).
 
 ![Dolphin Launcher Screenshot](screenshot.jpg)
 
