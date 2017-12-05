@@ -1,4 +1,4 @@
-# libretro-dolphin-launcher
+# libretro-pcsx2-launcher
 
 Launch Sony PlayStation 2 games through [PCSX2](https://pcsx2.net/), directly from [RetroArch](http://www.libretro.com/). Based on [libretro-dolphin-launcher](https://github.com/RobLoach/libretro-dolphin-launcher) from Rob Loach.
 
@@ -16,6 +16,7 @@ Launch Sony PlayStation 2 games through [PCSX2](https://pcsx2.net/), directly fr
 2. Copy the core file to the RetroArch cores directory
   ``` bash
   cp dolphin_launcher_libretro.so /usr/lib/libretro/pcsx2_launcher_libretro.so
+  cp dolphin_launcher_libretro.info /usr/share/libretro/info/pcsx2_launcher_libretro.info
   ```
 
 3. Make sure [PCSX2](https://pcsx2.net/) [is installed](https://pcsx2.net/download.html). You should be able to run at least one of the following commands:
