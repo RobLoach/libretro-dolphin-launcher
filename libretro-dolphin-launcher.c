@@ -43,10 +43,10 @@ void retro_set_controller_port_device(unsigned port, unsigned device)
 void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
-   info->library_name     = "Dolphin Launcher";
+   info->library_name     = "PCSX2 Launcher";
    info->library_version  = "1.1.1";
    info->need_fullpath    = true;
-   info->valid_extensions = "elf|dol|gcm|iso|wbfs|ciso|gcz|wad";
+   info->valid_extensions = "bin|iso|img|nrg|mdf|z|z2|bz2|dump";
 }
 
 static retro_video_refresh_t video_cb;
@@ -139,45 +139,32 @@ void retro_run(void)
 bool retro_load_game(const struct retro_game_info *info)
 {
    // Launch without the gui if available (Dolphin 5).
-   char command[512] = "dolphin-emu-nogui";
+   char command[512] = "PCSX2";
 
    // Check if there is content to load.
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
-      sprintf(command, "%s -e \"%s\"", command, info->path);
+      sprintf(command, "%s --fullscreen \"%s\"", command, info->path);
    }
 
    // Check if running Dolphin works.
    if (system(command) == 0) {
-      printf("libretro-dolphin-launcher: Completed dolphin-emu-nogui\n");
-      return true;
-   }
-   printf("libretro-dolphin-launcher: dolphin-emu-nogui not found. Attempting dolphin-emu...\n");
-
-   // Dolphin 4 does not have dolphin-emu-nogui.
-   strcpy(command, "dolphin-emu");
-   if (info != NULL && info->path != NULL && info->path[0] != '\0') {
-      // Execute with --batch.
-      sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
-   }
-
-   if (system(command) == 0) {
-      printf("libretro-dolphin-launcher: Finished dolphin-emu\n");
+      printf("libretro-pcsx2-launcher: Completed PCSX2\n");
       return true;
    }
 
    // Flatpak
-   printf("libretro-dolphin-launcher: dolphin-emu not found. Attempting Flatpak...\n");
-   strcpy(command, "flatpak run org.DolphinEmu.dolphin-emu");
+   printf("libretro-pcsx2-launcher: PCSX2 not found. Attempting Flatpak...\n");
+   strcpy(command, "flatpak run net.pcsx2.PCSX2");
    if (info != NULL && info->path != NULL && info->path[0] != '\0') {
       // Execute with --batch.
-      sprintf(command, "%s --batch --exec=\"%s\"", command, info->path);
+      sprintf(command, "%s --fullscreen \"%s\"", command, info->path);
    }
    if (system(command) == 0) {
-      printf("libretro-dolphin-launcher: Finished running Dolphin through Flatpak.\n");
+      printf("libretro-pcsx2-launcher: Finished running Dolphin through Flatpak.\n");
       return true;
    }
 
-   printf("libretro-dolphin-launcher: Failed running Dolphin. Install it and try again.\n");
+   printf("libretro-pcsx2-launcher: Failed running PCSX2. Install it and try again.\n");
    return false;
 }
 
