@@ -29,7 +29,7 @@ else ifneq ($(findstring MINGW,$(shell uname -a)),)
 	system_platform = win
 endif
 
-TARGET_NAME := pcsx2_launcher
+TARGET_NAME := dolphin_launcher
 LIBM		= -lm
 
 ifeq ($(ARCHFLAGS),)
