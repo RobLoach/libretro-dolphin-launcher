@@ -16,6 +16,7 @@ Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org
 2. Copy the core file to the RetroArch cores directory
   ``` bash
   cp dolphin_launcher_libretro.so /usr/lib/libretro/
+  cp dolphin_launcher_libretro.info /usr/share/libretro/info/
   ```
 
 3. Make sure [Dolphin](http://dolphin-emu.org) [is installed](https://dolphin-emu.org/download/?ref=btn). You should be able to run at least one of the following commands:
