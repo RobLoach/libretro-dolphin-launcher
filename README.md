@@ -18,9 +18,11 @@ Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org
   cp dolphin_launcher_libretro.so /usr/lib/libretro/
   ```
 
-3. Make sure [Dolphin](http://dolphin-emu.org) [is installed](https://dolphin-emu.org/download/?ref=btn)
+3. Make sure [Dolphin](http://dolphin-emu.org) [is installed](https://dolphin-emu.org/download/?ref=btn). You should be able to run at least one of the following commands:
   ``` bash
-  dolphin-emu
+  dolphin-emu --version
+  dolphin-emu-nogui --version
+  flatpak run org.DolphinEmu.dolphin-emu --version
   ```
 
 ## Usage
