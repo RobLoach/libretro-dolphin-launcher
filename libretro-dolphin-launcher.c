@@ -160,7 +160,7 @@ bool retro_load_game(const struct retro_game_info *info)
       sprintf(command, "%s --fullscreen \"%s\"", command, info->path);
    }
    if (system(command) == 0) {
-      printf("libretro-pcsx2-launcher: Finished running Dolphin through Flatpak.\n");
+      printf("libretro-pcsx2-launcher: Finished running PCSX2 through Flatpak.\n");
       return true;
    }
 
