@@ -1,6 +1,6 @@
 # libretro-dolphin-launcher
 
-Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org), directly from [RetroArch](http://www.libretro.com/).
+Launch Nintendo Wii and GameCube games through [Dolphin](https://dolphin-emu.org), directly from [RetroArch](http://www.libretro.com/). Use the [libretro Dolphin core](https://github.com/libretro/dolphin) for a more integrated solution.
 
 ![Dolphin Launcher Screenshot](screenshot.jpg)
 
