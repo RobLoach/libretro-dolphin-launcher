@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## 1.2.0 - Unreleased
 ### Chores
 - Updated Makefile
+- Updated libretro.h
+- Added git version to the version string
 
 ## 1.1.1 - 2017-06-18
 ### Fixed

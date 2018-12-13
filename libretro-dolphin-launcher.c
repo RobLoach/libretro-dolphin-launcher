@@ -4,7 +4,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
-#include <libretro.h>
+#include "libretro.h"
 
 static uint32_t *frame_buf;
 static struct retro_log_callback logging;
@@ -44,7 +44,10 @@ void retro_get_system_info(struct retro_system_info *info)
 {
    memset(info, 0, sizeof(*info));
    info->library_name     = "Dolphin Launcher";
-   info->library_version  = "1.2.0";
+#ifndef GIT_VERSION
+#define GIT_VERSION ""
+#endif
+   info->library_version  = "1.2.0" GIT_VERSION;
    info->need_fullpath    = true;
    info->valid_extensions = "elf|dol|gcm|iso|wbfs|ciso|gcz|wad";
 }
